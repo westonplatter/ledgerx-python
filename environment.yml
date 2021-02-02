@@ -1,0 +1,17 @@
+name: ledgerx
+
+channels:
+    - default
+
+dependencies:
+    - python=3.7
+    - requests
+    - pandas
+    # test resources
+    - pytest
+    - pip
+    - pip:
+        - twine
+        - ipdb
+        - "--editable ."
+        # testing resources
