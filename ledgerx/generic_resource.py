@@ -29,16 +29,10 @@ class GenericResource:
             sleep(DELAY_SECONDS)
             json_data = cls.next(json_data["meta"]["next"])
             elements.extend(json_data["data"])
-
-            # TODO(weston) for example, move this functionality into the list_all_incremental_return
-            # df = pd.DataFrame.from_dict(elements)
-            # df.to_csv("all_trades.csv")
-            # print(f"data = {len(elements)}")
-
         return elements
 
     @classmethod
-    def list_all_incremental_return(cls, url: str, params: Dict={}, max_fetches: int=0, callback: Callable=None) -> None:
+    def list_all_incremental_return(cls, url: str, params: Dict={}, callback: Callable=None, max_fetches: int=0) -> None:
         json_data = cls.list(url, params)
         callback(json_data["data"])
 

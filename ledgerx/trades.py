@@ -1,4 +1,4 @@
-from typing import List, Dict
+from typing import List, Dict, Callable
 from ledgerx.http_client import HttpClient
 from ledgerx.util import gen_headers, gen_url
 from ledgerx.generic_resource import GenericResource
@@ -27,3 +27,9 @@ class Trades:
         url = gen_url("/trading/trades/global")
         request_params = {**cls.default_list_params, **params}
         return GenericResource.list_all(url, request_params)
+
+    @classmethod
+    def list_all_incremental_return(cls, params: Dict={}, callback: Callable=None):
+        url = gen_url("/trading/trades/global")
+        request_params = {**cls.default_list_params, **params}
+        return GenericResource.list_all_incremental_return(url, params, callback)
