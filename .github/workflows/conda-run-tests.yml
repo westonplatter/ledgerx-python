@@ -19,25 +19,16 @@ jobs:
         python-version: ["3.7"] #, "2.7"]
 
     steps:
-      # - name: Install xmllint
-      #   run: |
-      #     sudo apt install build-essential wget -y
-      #     wget https://artiya4u.keybase.pub/TA-lib/ta-lib-0.4.0-src.tar.gz
-      #     tar -xvf ta-lib-0.4.0-src.tar.gz
-      #     cd ta-lib/
-      #     ./configure --prefix=/usr
-      #     make
-      #     sudo make install
       - uses: actions/checkout@v2
       - name: Cache Conda
         uses: actions/cache@v1
         with:
-          path: /usr/share/miniconda/envs/ta_scanner
+          path: /usr/share/miniconda/envs/ledgerx
           key: ${{ runner.os }}-conda-${{ hashFiles('environment.yml') }}
           restore-keys: |
             ${{ runner.os }}-conda-
       - name: Setup conda dependencies
-        uses: goanpeca/setup-miniconda@v1
+        uses: conda-incubator/setup-miniconda@v2
         with:
           activate-environment: ledgerx
           environment-file: environment.yml
