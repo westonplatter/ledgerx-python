@@ -1,5 +1,5 @@
 from typing import List, Dict
-from ledgerx.client import Client
+from ledgerx.http_client import HttpClient
 from ledgerx.generic_resource import GenericResource
 from ledgerx.util import gen_headers, gen_url, has_next_url, unique_values_from_key
 
@@ -9,14 +9,14 @@ class Contracts:
 
     @classmethod
     def next(cls, next_url: str) -> Dict:
-        res = Client.get(next_url)
+        res = HttpClient.get(next_url)
         return res.json()
 
     @classmethod
     def list(cls, params: Dict = {}) -> List[Dict]:
         url = gen_url("/trading/contracts")
         qps = {**cls.default_list_params, **params}
-        res = Client.get(url, qps)
+        res = HttpClient.get(url, qps)
         return res.json()
 
     @classmethod

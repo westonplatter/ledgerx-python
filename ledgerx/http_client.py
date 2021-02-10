@@ -5,7 +5,7 @@ import ledgerx
 from ledgerx.util import gen_headers, gen_url
 
 
-class Client:
+class HttpClient:
     @staticmethod
     def get(url: str, params: Dict = {}):
         headers = gen_headers()
