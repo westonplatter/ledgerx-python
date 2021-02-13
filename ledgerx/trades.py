@@ -29,7 +29,7 @@ class Trades:
         return GenericResource.list_all(url, request_params)
 
     @classmethod
-    def list_all_incremental_return(cls, params: Dict={}, callback: Callable=None):
+    def list_all_incremental_return(cls, params: Dict = {}, callback: Callable = None):
         url = gen_url("/trading/trades/global")
         request_params = {**cls.default_list_params, **params}
         return GenericResource.list_all_incremental_return(url, params, callback)
