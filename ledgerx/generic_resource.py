@@ -19,7 +19,7 @@ class GenericResource:
         return res.json()
 
     @classmethod
-    def list_all(cls, url: str, params: Dict = {}, max_fetches: int=0) -> List[Dict]:
+    def list_all(cls, url: str, params: Dict = {}, max_fetches: int = 0) -> List[Dict]:
         elements = []
 
         json_data = cls.list(url, params)
@@ -32,7 +32,13 @@ class GenericResource:
         return elements
 
     @classmethod
-    def list_all_incremental_return(cls, url: str, params: Dict={}, callback: Callable=None, max_fetches: int=0) -> None:
+    def list_all_incremental_return(
+        cls,
+        url: str,
+        params: Dict = {},
+        callback: Callable = None,
+        max_fetches: int = 0,
+    ) -> None:
         json_data = cls.list(url, params)
         callback(json_data["data"])
 
@@ -40,7 +46,3 @@ class GenericResource:
             sleep(DELAY_SECONDS)
             json_data = cls.next(json_data["meta"]["next"])
             callback(json_data["data"])
-
-
-
-
