@@ -1,5 +1,6 @@
 from typing import Dict, List, Any
-from ledgerx import API_BASE, api_key
+from ledgerx import API_BASE
+import ledgerx
 
 
 def gen_headers(include_api_key: bool = False) -> Dict:
@@ -7,7 +8,7 @@ def gen_headers(include_api_key: bool = False) -> Dict:
         "Accept": "application/json",
     }
     if include_api_key:
-        headers["Authorization"] = api_key
+        headers["Authorization"] = f"JWT {ledgerx.api_key}"
     return headers
 
 
