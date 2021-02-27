@@ -1,6 +1,5 @@
 from typing import List, Dict
 from ledgerx.http_client import HttpClient
-from ledgerx.generic_resource import GenericResource
 from ledgerx.util import gen_headers, gen_url, has_next_url, unique_values_from_key
 
 
