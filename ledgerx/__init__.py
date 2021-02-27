@@ -11,3 +11,5 @@ verify_ssl_certs = True
 # endpoints as classes
 from ledgerx.trades import Trades
 from ledgerx.contracts import Contracts
+from ledgerx.positions import Positions
+from ledgerx.transactions import Transactions

@@ -6,6 +6,8 @@ from ledgerx.util import gen_headers, gen_url
 
 
 class HttpClient:
+    # TODO(weston) - handle rate limiting, https://docs.ledgerx.com/reference#rate-limits
+
     @staticmethod
     def get(url: str, params: Dict = {}, include_api_key: bool = False):
         headers = gen_headers(include_api_key)

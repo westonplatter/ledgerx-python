@@ -1,6 +1,5 @@
 from time import sleep
 from typing import List, Dict, Callable
-import pandas as pd
 
 from ledgerx import DELAY_SECONDS
 from ledgerx.http_client import HttpClient
