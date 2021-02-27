@@ -48,7 +48,7 @@ class Trades:
 
     @classmethod
     def list_all_incremental_return(cls, params: Dict = {}, callback: Callable = None):
-        """List all trades and execute callback function after 
+        """List all trades and execute callback function after
         each HTTP request (ie, in between pagination breaks).
 
         This API request calls the Trades.list_all function.

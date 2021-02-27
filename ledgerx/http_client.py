@@ -9,7 +9,9 @@ class HttpClient:
     # TODO(weston) - handle rate limiting, https://docs.ledgerx.com/reference#rate-limits
 
     @staticmethod
-    def get(url: str, params: Dict = {}, include_api_key: bool = False) -> requests.Response:
+    def get(
+        url: str, params: Dict = {}, include_api_key: bool = False
+    ) -> requests.Response:
         """Excute http get request
 
         Args:
@@ -25,7 +27,9 @@ class HttpClient:
         return res
 
     @staticmethod
-    def post(url: str, data: Dict = {}, include_api_key: bool = False) -> requests.Response:
+    def post(
+        url: str, data: Dict = {}, include_api_key: bool = False
+    ) -> requests.Response:
         """Execute http post request
 
         Args:
@@ -39,9 +43,11 @@ class HttpClient:
         headers = gen_headers(include_api_key)
         res = requests.post(url, headers=headers, json=data)
         return res
-    
+
     @staticmethod
-    def delete(url: str, params: Dict = {}, include_api_key: bool = False) -> requests.Response:
+    def delete(
+        url: str, params: Dict = {}, include_api_key: bool = False
+    ) -> requests.Response:
         """Execute http delete request
 
         Args:

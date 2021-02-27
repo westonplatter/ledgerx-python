@@ -15,6 +15,7 @@ def gen_headers(include_api_key: bool = False) -> Dict:
 def gen_url(path: str) -> str:
     return f"{API_BASE}{path}"
 
+
 def gen_legacy_url(path: str) -> str:
     return f"{LEGACY_API_BASE}{path}"
 

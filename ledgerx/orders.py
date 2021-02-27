@@ -5,7 +5,7 @@ from ledgerx.util import gen_legacy_url
 
 class Orders:
     default_list_params = dict()
-    
+
     @classmethod
     def cancel_all(cls) -> Dict:
         """Delete all outstanding orders associated with your MPID (the whole organization)
@@ -19,7 +19,7 @@ class Orders:
         url = gen_legacy_url("/orders")
         res = HttpClient.delete(url, {}, include_api_key)
         return res.json()
-    
+
     @classmethod
     def cancel_single(cls, mid: str, contract_id: int) -> Dict:
         """Cancel a single resting limit order
@@ -37,7 +37,7 @@ class Orders:
         qps = dict(contract_id=contract_id)
         res = HttpClient.delete(url, qps, include_api_key)
         return res.json()
-    
+
     @classmethod
     def cancel_replace(cls, mid: str, contract_id: int, price: int, size: int) -> Dict:
         """Atomically swap an existing resting limit order with a new resting limit order. Price, side and size may be changed.
@@ -60,7 +60,6 @@ class Orders:
         qps = dict(contract_id=contract_id, price=price, size=size)
         res = HttpClient.post(url, qps, include_api_key)
         return res.json()
-
 
     @classmethod
     def open(cls, params: Dict = {}) -> Dict:
