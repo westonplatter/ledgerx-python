@@ -13,9 +13,24 @@ class Contracts:
         return res.json()
 
     @classmethod
+    def retrieve(cls, contract_id: int) -> Dict:
+        include_api_key = True
+        url = gen_url(f"/trading/contracts/{contract_id}")
+        res = HttpClient.get(url, {}, include_api_key)
+        return res.json()
+
+    @classmethod
     def list(cls, params: Dict = {}) -> List[Dict]:
         include_api_key = False
         url = gen_url("/trading/contracts")
+        qps = {**cls.default_list_params, **params}
+        res = HttpClient.get(url, qps, include_api_key)
+        return res.json()
+
+    @classmethod
+    def list_traded(cls, params: Dict={}) -> List[Dict]:
+        include_api_key = True
+        url = gen_url("/trading/contracts/traded")
         qps = {**cls.default_list_params, **params}
         res = HttpClient.get(url, qps, include_api_key)
         return res.json()
