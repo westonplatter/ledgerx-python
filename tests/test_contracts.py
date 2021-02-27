@@ -1,8 +1,8 @@
-from ledgerx import contracts
+import ledgerx
 
 
 def test_methods():
-    class_methods = dir(contracts.Contracts)
+    class_methods = dir(ledgerx.Contracts)
     assert "next" in class_methods
     assert "list" in class_methods
     assert "list_all" in class_methods

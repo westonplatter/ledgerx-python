@@ -13,3 +13,5 @@ env.create:
 env.update:
 	@conda env update -n ${CONDA_ENV} -f environment.yml
 
+examples.store_all_trades:
+	@python examples/store_all_trades.py
