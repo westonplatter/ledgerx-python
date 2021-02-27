@@ -14,16 +14,18 @@ class Contracts:
 
     @classmethod
     def list(cls, params: Dict = {}) -> List[Dict]:
+        include_api_key = False
         url = gen_url("/trading/contracts")
         qps = {**cls.default_list_params, **params}
-        res = HttpClient.get(url, qps)
+        res = HttpClient.get(url, qps, include_api_key)
         return res.json()
 
     @classmethod
     def list_all(cls, params: Dict = {}) -> List[str]:
+        include_api_key = False
         url = gen_url("/trading/contracts")
         qps = {**cls.default_list_params, **params}
-        return GenericResource.list_all(url, qps)
+        return GenericResource.list_all(url, qps, include_api_key)
 
     @classmethod
     def list_all_expiration_dates(cls, params: Dict = {}) -> List[str]:

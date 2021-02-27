@@ -2,7 +2,7 @@ import os
 
 # settings
 API_BASE = "https://api.ledgerx.com"
-DELAY_SECONDS = 1.1
+DELAY_SECONDS = 0.0
 
 # configurations
 api_key = None
