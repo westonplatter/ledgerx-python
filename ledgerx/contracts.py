@@ -28,7 +28,7 @@ class Contracts:
         return res.json()
 
     @classmethod
-    def list_traded(cls, params: Dict={}) -> List[Dict]:
+    def list_traded(cls, params: Dict = {}) -> List[Dict]:
         include_api_key = True
         url = gen_url("/trading/contracts/traded")
         qps = {**cls.default_list_params, **params}
