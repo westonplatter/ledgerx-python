@@ -6,12 +6,13 @@ channels:
 dependencies:
     - python=3.7
     - requests
+    # dev resources
     - pandas
     # test resources
     - pytest
     - pip
     - pip:
-        - loguru
+        - Deprecated
         # dev resources
         - twine
         - ipdb
