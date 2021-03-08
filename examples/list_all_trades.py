@@ -1,8 +1,7 @@
 import pandas as pd
-from time import sleep, time
+from time import time
 
 from ledgerx import Trades
-from ledgerx import Contracts
 
 
 def callback_func(data):
