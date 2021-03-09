@@ -1,11 +1,10 @@
 import glob
 import os
 import pandas as pd
-from time import sleep, time
+from time import time
 
 
 from ledgerx import Trades
-from ledgerx import Contracts
 
 
 CONSOLIDATED_TRADES_FILE = "examples/data/consolidated_trades.csv"

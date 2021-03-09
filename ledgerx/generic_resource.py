@@ -3,7 +3,7 @@ from typing import List, Dict, Callable
 
 from ledgerx import DELAY_SECONDS
 from ledgerx.http_client import HttpClient
-from ledgerx.util import gen_headers, gen_url, has_next_url
+from ledgerx.util import has_next_url
 
 
 class GenericResource:

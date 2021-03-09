@@ -1,6 +1,6 @@
 from ledgerx.http_client import HttpClient
 from typing import List, Dict
-from ledgerx.util import gen_headers, gen_url, has_next_url, unique_values_from_key
+from ledgerx.util import gen_url
 
 
 class Transactions:

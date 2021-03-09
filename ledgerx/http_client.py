@@ -1,8 +1,6 @@
 import requests
 from typing import Dict
-
-import ledgerx
-from ledgerx.util import gen_headers, gen_url
+from ledgerx.util import gen_headers
 
 
 class HttpClient:
