@@ -1,6 +1,4 @@
-import sys
 from setuptools import setup
-from setuptools.command.test import test as TestCommand
 
 
 version_contents = {}
