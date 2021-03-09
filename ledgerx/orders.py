@@ -74,6 +74,6 @@ class Orders:
             Dict: [description]
         """
         include_api_key = True
-        url = gen_legacy_url(f"/open-orders")
+        url = gen_legacy_url("/open-orders")
         res = HttpClient.get(url, {}, include_api_key)
         return res.json()
