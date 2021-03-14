@@ -88,3 +88,5 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+.pre-commit-config.yaml

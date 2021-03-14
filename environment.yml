@@ -18,3 +18,4 @@ dependencies:
         - ipdb
         - "--editable ."
         # testing resources
+        - requests_mock

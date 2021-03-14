@@ -22,6 +22,7 @@ class HttpClient:
         """
         headers = gen_headers(include_api_key)
         res = requests.get(url, headers=headers, params=params)
+        res.raise_for_status()
         return res
 
     @staticmethod
@@ -40,6 +41,7 @@ class HttpClient:
         """
         headers = gen_headers(include_api_key)
         res = requests.post(url, headers=headers, json=data)
+        res.raise_for_status()
         return res
 
     @staticmethod
@@ -58,4 +60,5 @@ class HttpClient:
         """
         headers = gen_headers(include_api_key)
         res = requests.delete(url, params=params, headers=headers)
+        res.raise_for_status()
         return res
