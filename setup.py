@@ -16,7 +16,7 @@ dependencies = [
 ]
 
 
-test_dependencies = ["pytest", "black"]
+test_dependencies = ["pytest", "black", "requests-mock"]
 
 
 setup(
