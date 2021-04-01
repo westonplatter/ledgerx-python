@@ -21,7 +21,7 @@ class Contracts:
         include_api_key = False
         url = gen_url("/trading/contracts")
         qps = {**cls.default_list_params, **params}
-        res = HttpClient.get(url, qps, include_api_key)
+        res = HttpClient.get(url, qps, include_api_key, 0, 6)
         return res.json()
 
     @classmethod

@@ -1,7 +1,12 @@
 import requests
 from typing import Dict
+from time import sleep
 from ledgerx.util import gen_headers
+from ledgerx import DELAY_SECONDS
 
+import logging
+
+logging.basicConfig(level=logging.INFO)
 
 class HttpClient:
     # TODO(weston) - handle rate limiting, https://docs.ledgerx.com/reference#rate-limits
@@ -20,9 +25,23 @@ class HttpClient:
         Returns:
             requests.Response: [description]
         """
+        delay = DELAY_SECONDS
         headers = gen_headers(include_api_key)
-        res = requests.get(url, headers=headers, params=params)
-        res.raise_for_status()
+        res = None
+        while True:
+            res = requests.get(url, headers=headers, params=params)
+            if res.status_code == 429:
+                if delay == DELAY_SECONDS:
+                    delay += 1
+                else:
+                    delay *= 2.0
+                if delay > 10:
+                    delay = 10
+                logging.info(f"Got 429, delaying {delay}s before retry of url: {url}")
+                sleep(delay)
+            else:
+                res.raise_for_status()
+                break
         return res
 
     @staticmethod

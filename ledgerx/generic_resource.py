@@ -24,16 +24,21 @@ class GenericResource:
         params: Dict = {},
         include_api_key: bool = False,
         max_fetches: int = 0,
+        delay: float = DELAY_SECONDS,
     ) -> List[Dict]:
         elements = []
 
         json_data = cls.list(url, params, include_api_key)
         elements.extend(json_data["data"])
+        fetches = 1
 
         while has_next_url(json_data):
-            sleep(DELAY_SECONDS)
+            if max_fetches > 0 and fetches >= max_fetches:
+                break
+            sleep(delay)
             json_data = cls.next(json_data["meta"]["next"])
             elements.extend(json_data["data"])
+            fetches += 1
         return elements
 
     @classmethod
@@ -44,11 +49,16 @@ class GenericResource:
         include_api_key: bool = False,
         callback: Callable = None,
         max_fetches: int = 0,
+        delay: float = DELAY_SECONDS,
     ) -> None:
         json_data = cls.list(url, params, include_api_key=include_api_key)
         callback(json_data["data"])
+        fetches = 1
 
         while has_next_url(json_data):
-            sleep(DELAY_SECONDS)
+            if max_fetches > 0 and fetches >= max_fetches:
+                break
+            sleep(delay)
             json_data = cls.next(json_data["meta"]["next"])
             callback(json_data["data"])
+            fetches += 1

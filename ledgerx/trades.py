@@ -44,7 +44,7 @@ class Trades:
         include_api_key = False
         url = gen_url("/trading/trades/global")
         request_params = {**cls.default_list_all_params, **params}
-        return GenericResource.list_all(url, request_params, include_api_key)
+        return GenericResource.list_all(url, request_params, include_api_key, 0, 6)
 
     # helper methods specific to this API client
 
@@ -68,7 +68,7 @@ class Trades:
         url = gen_url("/trading/trades/global")
         request_params = {**cls.default_list_params, **params}
         return GenericResource.list_all_incremental_return(
-            url, params, include_api_key, callback
+            url, params, include_api_key, callback, 0, 6
         )
 
     @classmethod
