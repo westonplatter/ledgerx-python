@@ -2,6 +2,7 @@ from typing import List, Dict
 from ledgerx.http_client import HttpClient
 from ledgerx.generic_resource import GenericResource
 from ledgerx.util import gen_url, unique_values_from_key
+from ledgerx import DEFAULT_LIMIT
 
 
 class Contracts:

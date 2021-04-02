@@ -1,6 +1,7 @@
 from typing import List, Dict
 from ledgerx.http_client import HttpClient
 from ledgerx.util import gen_url
+from ledgerx import DEFAULT_LIMIT
 
 
 class Positions:
@@ -43,14 +44,14 @@ class Positions:
     ### helper methods specific to this API client
 
     @classmethod
-    def list_all(cls, params: Dict = dict() -> List[Dict]:
+    def list_all(cls, params: Dict = dict()) -> List[Dict]:
         include_api_key = True
         url = gen_url("/trading/positions")
         qps = {**cls.default_positions_params, **params}
         return GenericResource.list_all(url, qps, include_api_key)
 
     @classmethod
-    def list_all_trades(cls, position_id: int, params: Dict = dict() -> Dict:
+    def list_all_trades(cls, position_id: int, params: Dict = dict()) -> Dict:
         include_api_key = True
         url = gen_url(f"/trading/positions/{position_id}/trades")
         qps = {**cls.default_trades_params, **params}

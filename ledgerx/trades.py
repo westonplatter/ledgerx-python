@@ -2,6 +2,7 @@ from typing import List, Dict, Callable
 from ledgerx.http_client import HttpClient
 from ledgerx.util import gen_url
 from ledgerx.generic_resource import GenericResource
+from ledgerx import DEFAULT_LIMIT
 
 
 class Trades:
