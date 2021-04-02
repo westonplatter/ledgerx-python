@@ -8,9 +8,11 @@ from ledgerx.util import has_next_url
 
 class GenericResource:
     @classmethod
-    def next(cls, next_url: str):
-        res = HttpClient.get(next_url)
-        return res.json()
+    def next(cls, next_url: str, params: Dict, include_api_key: bool = False):
+        res = HttpClient.get(next_url, params, include_api_key)
+        json_data = res.json()
+        logging.debug(f"next {next_url} got {res} {json_data}")
+        return json_data
 
     @classmethod
     def list(cls, url: str, params: Dict, include_api_key: bool = False):
@@ -36,7 +38,7 @@ class GenericResource:
             if max_fetches > 0 and fetches >= max_fetches:
                 break
             sleep(delay)
-            json_data = cls.next(json_data["meta"]["next"])
+            json_data = cls.next(json_data["meta"]["next"], params, include_api_key)
             elements.extend(json_data["data"])
             fetches += 1
         return elements
@@ -59,6 +61,6 @@ class GenericResource:
             if max_fetches > 0 and fetches >= max_fetches:
                 break
             sleep(delay)
-            json_data = cls.next(json_data["meta"]["next"])
+            json_data = cls.next(json_data["meta"]["next"], params, include_api_key)
             callback(json_data["data"])
             fetches += 1

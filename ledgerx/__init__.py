@@ -3,7 +3,10 @@ import os
 # settings
 API_BASE = "https://api.ledgerx.com"
 LEGACY_API_BASE = "https://trade.ledgerx.com/api"
-DELAY_SECONDS = 0.0
+
+DELAY_SECONDS = 0.01
+DEFAULT_LIMIT = 200
+
 
 # configurations
 api_key = None

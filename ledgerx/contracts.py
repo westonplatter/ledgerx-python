@@ -5,8 +5,8 @@ from ledgerx.util import gen_url, unique_values_from_key
 
 
 class Contracts:
-    default_list_params = dict(active=True)
-    default_list_traded = dict(derivative_type=None, asset=None)
+    default_list_params = dict(limit=DEFAULT_LIMIT, active=True)
+    default_list_traded = dict(limit=DEFAULT_LIMIT, derivative_type=None, asset=None)
 
     @classmethod
     def list(cls, params: Dict = {}) -> List[Dict]:

@@ -6,8 +6,6 @@ from ledgerx import DELAY_SECONDS
 
 import logging
 
-logging.basicConfig(level=logging.INFO)
-
 class HttpClient:
     # TODO(weston) - handle rate limiting, https://docs.ledgerx.com/reference#rate-limits
 
