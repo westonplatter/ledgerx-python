@@ -3,6 +3,7 @@ from ledgerx.http_client import HttpClient
 from ledgerx.util import gen_url
 from ledgerx.generic_resource import GenericResource
 from ledgerx import DEFAULT_LIMIT
+from ledgerx import DELAY_SECONDS
 
 
 class Trades:
@@ -10,6 +11,7 @@ class Trades:
         status_type=201, limit=50, min_size=1, mine=False, asset="CBTC"
     )
     default_list_all_params = dict(limit=DEFAULT_LIMIT)
+    default_trading_trades_global_delay = DELAY_SECONDS
 
     @classmethod
     def list(cls, params: Dict = {}) -> List[Dict]:
@@ -45,7 +47,7 @@ class Trades:
         include_api_key = False
         url = gen_url("/trading/trades/global")
         request_params = {**cls.default_list_all_params, **params}
-        return GenericResource.list_all(url, request_params, include_api_key, 0, 6)
+        return GenericResource.list_all(url, request_params, include_api_key, 0, cls.default_trading_trades_global_delay)
 
     # helper methods specific to this API client
 
@@ -69,7 +71,7 @@ class Trades:
         url = gen_url("/trading/trades/global")
         request_params = {**cls.default_list_params, **params}
         return GenericResource.list_all_incremental_return(
-            url, params, include_api_key, callback, 0, 6
+            url, params, include_api_key, callback, 0, cls.default_trading_trades_global_delay
         )
 
     @classmethod

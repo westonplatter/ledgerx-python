@@ -3,11 +3,13 @@ from ledgerx.http_client import HttpClient
 from ledgerx.generic_resource import GenericResource
 from ledgerx.util import gen_url, unique_values_from_key
 from ledgerx import DEFAULT_LIMIT
+from ledgerx import DELAY_SECONDS
 
 
 class Contracts:
     default_list_params = dict(limit=DEFAULT_LIMIT, active=True)
     default_list_traded = dict(limit=DEFAULT_LIMIT, derivative_type=None, asset=None)
+    default_trading_contracts_delay = DELAY_SECONDS
 
     @classmethod
     def list(cls, params: Dict = {}) -> List[Dict]:
@@ -22,7 +24,7 @@ class Contracts:
         include_api_key = False
         url = gen_url("/trading/contracts")
         qps = {**cls.default_list_params, **params}
-        res = HttpClient.get(url, qps, include_api_key, 0, 6)
+        res = HttpClient.get(url, qps, include_api_key)
         return res.json()
 
     @classmethod
@@ -82,7 +84,7 @@ class Contracts:
         include_api_key = False
         url = gen_url("/trading/contracts")
         qps = {**cls.default_list_params, **params}
-        return GenericResource.list_all(url, qps, include_api_key)
+        return GenericResource.list_all(url, qps, include_api_key, 0, cls.default_trading_contracts_delay)
 
     @classmethod
     def next(cls, next_url: str) -> Dict:

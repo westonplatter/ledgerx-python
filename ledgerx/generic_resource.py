@@ -7,6 +7,8 @@ from ledgerx.util import has_next_url
 
 
 class GenericResource:
+    list_all_default_delay = DELAY_SECONDS
+
     @classmethod
     def next(cls, next_url: str, params: Dict, include_api_key: bool = False):
         res = HttpClient.get(next_url, params, include_api_key)
@@ -26,10 +28,11 @@ class GenericResource:
         params: Dict = {},
         include_api_key: bool = False,
         max_fetches: int = 0,
-        delay: float = DELAY_SECONDS,
+        delay: float = -1,
     ) -> List[Dict]:
         elements = []
-
+        if delay < 0:
+            delay = cls.list_all_default_delay
         json_data = cls.list(url, params, include_api_key)
         elements.extend(json_data["data"])
         fetches = 1
